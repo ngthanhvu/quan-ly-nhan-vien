@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Login to Flexy UI')
+@section('title', 'Đăng nhập')
 
 @section('content')
     <div class="w-full max-w-md">
@@ -13,7 +13,7 @@
         </div>
 
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Login</h1>
-        <form action="#" method="POST" class="space-y-6">
+        <form action="{{ route('login') }}" method="POST" class="space-y-6">
             @csrf
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>

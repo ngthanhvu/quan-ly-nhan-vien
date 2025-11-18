@@ -19,6 +19,16 @@ return new class extends Migration
             $table->string('role')->default('user');
             $table->string('status')->default('active');
             $table->string('avatar')->nullable();
+            $table->timestamp('last_login_at')->nullable();
+            $table->timestamp('token_invalid_before')->nullable();
+            $table->string('otp_code')->nullable();
+            $table->timestamp('otp_expires_at')->nullable();
+            $table->unsignedTinyInteger('otp_attempts')->default(0);
+            $table->string('refresh_token')->nullable();
+            $table->timestamp('refresh_token_expires_at')->nullable();
+            $table->string('email_verification_token')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

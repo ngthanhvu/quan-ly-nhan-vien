@@ -13,7 +13,7 @@
         </div>
 
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Register</h1>
-        <form action="#" method="POST" class="space-y-6">
+        <form action="/register" method="POST" class="space-y-6">
             @csrf
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
@@ -24,10 +24,9 @@
                                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                     </div>
-                    <input type="text" id="name" name="name" value="{{ old('name') }}"
+                    <input type="text" id="username" name="username" value="{{ old('username') }}"
                         placeholder="Please enter your name"
-                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition"
-                        required>
+                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition">
                 </div>
                 @error('name')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -44,8 +43,7 @@
                     </div>
                     <input type="email" id="email" name="email" value="{{ old('email') }}"
                         placeholder="Please enter your email"
-                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition"
-                        required>
+                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition">
                 </div>
                 @error('email')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -61,8 +59,7 @@
                         </svg>
                     </div>
                     <input type="password" id="password" name="password" placeholder="Please enter your password"
-                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition"
-                        required>
+                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition">
                 </div>
                 @error('password')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -80,13 +77,14 @@
                     </div>
                     <input type="password" id="password_confirmation" name="password_confirmation"
                         placeholder="Please confirm your password"
-                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition"
-                        required>
+                        class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent outline-none transition">
                 </div>
             </div>
-            <button type="submit"
-                class="w-full bg-gray-800 text-white py-3 rounded-lg font-medium hover:bg-gray-900 transition duration-200">
-                Sign up
+            <button id="submitBtn" type="submit"
+                class="w-full bg-gray-800 text-white py-3 rounded-lg font-medium hover:bg-gray-900 transition duration-200 cursor-pointer flex items-center justify-center gap-2">
+                <span id="btnText">Sign up</span>
+                <span id="btnSpinner"
+                    class="hidden animate-spin border-2 border-white border-t-transparent rounded-full w-5 h-5"></span>
             </button>
             <div class="text-center">
                 <span class="text-gray-600">Already have an account? </span>
@@ -96,4 +94,17 @@
             </div>
         </form>
     </div>
+    <script>
+        const form = document.querySelector('form');
+        const btn = document.getElementById('submitBtn');
+        const text = document.getElementById('btnText');
+        const spinner = document.getElementById('btnSpinner');
+
+        form.addEventListener('submit', () => {
+            btn.disabled = true;
+            btn.classList.add("opacity-70", "cursor-not-allowed");
+            text.textContent = "Processing...";
+            spinner.classList.remove("hidden");
+        });
+    </script>
 @endsection

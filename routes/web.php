@@ -6,7 +6,19 @@ use App\Http\Controllers\AuthController;
 Route::middleware('jwt')->group(function () {
     Route::get('/', function () {
         return view('index');
-    });
+    })->name('dashboard');
+
+    Route::get('/employees', function () {
+        return view('employees.index');
+    })->name('employees.index');
+
+    Route::get('/attendance', function () {
+        return view('attendance.index');
+    })->name('attendance.index');
+
+    Route::get('/payroll', function () {
+        return view('payroll.index');
+    })->name('payroll.index');
 });
 
 Route::get('/register', fn() => view('auth.register'));

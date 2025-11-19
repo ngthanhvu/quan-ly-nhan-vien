@@ -6,17 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Admin Dashboard')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+
     <!-- Alpine.js for interactive components -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="bg-gray-100">
+<body class="text-gray-100">
     <div class="flex min-h-screen">
         @include('components.sidebar')
         <div class="flex-1 ml-64">
             <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-30">
-                <div class="flex items-center justify-between px-6 py-4">
+                <div class="flex items-center justify-between px-6 py-3">
                     <h1 class="text-2xl font-bold text-gray-800">@yield('page-title', 'Dashboard')</h1>
                     
                     <div class="flex items-center space-x-4">
@@ -44,19 +48,9 @@
                     </div>
                 </div>
             </header>
-            <main class="p-6">
+            <main class="p-6 pb-10">
                 @yield('content')
             </main>
-            <footer class="bg-white border-t border-gray-200 px-6 py-4 mt-auto">
-                <div class="flex justify-between items-center text-sm text-gray-600">
-                    <p>© {{ date('Y') }} Flexy UI. All rights reserved.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="hover:text-orange-500 transition">Privacy</a>
-                        <a href="#" class="hover:text-orange-500 transition">Terms</a>
-                        <a href="#" class="hover:text-orange-500 transition">Support</a>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
 </body>

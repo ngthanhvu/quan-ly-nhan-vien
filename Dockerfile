@@ -1,4 +1,4 @@
-FROM php:8.3-cli
+FROM php:8.3-fpm
 
 ARG NODE_MAJOR=20
 
@@ -51,8 +51,6 @@ RUN chmod +x /usr/local/bin/app-entrypoint
 
 ENTRYPOINT ["app-entrypoint"]
 
-# Expose port cho php artisan serve
-EXPOSE 8000
+EXPOSE 9000
 
-# Chạy Laravel bình thường, không Octane
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
+CMD ["php-fpm"]

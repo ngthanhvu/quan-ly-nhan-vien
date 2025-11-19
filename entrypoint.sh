@@ -25,4 +25,11 @@ case "${NPM_INSTALL:-auto}" in
     auto) [ -d node_modules ] || run_npm_install ;;
 esac
 
+# Fix permissions for storage and bootstrap/cache directories
+# This ensures www-data can write to these directories
+if [ -d storage ]; then
+    chown -R www-data:www-data storage bootstrap/cache 2>/dev/null || true
+    chmod -R 775 storage bootstrap/cache 2>/dev/null || true
+fi
+
 exec "$@"
